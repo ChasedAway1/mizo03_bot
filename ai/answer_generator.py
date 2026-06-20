@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+=======
+"""
+answer_generator.py — RAG (Retrieval-Augmented Generation) для МИЗО РБ.
+
+Алгоритм:
+1. По классифицированному намерению извлечь релевантные данные из БД
+2. Передать их LLM как контекст
+3. LLM генерирует связный, точный ответ со ссылками на закон
+"""
+
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 import logging
 from typing import Optional
 from .intent_classifier import Intent
@@ -65,6 +77,10 @@ class AnswerGenerator:
         sub = intent.subtopic
         mid = intent.measure_id
 
+<<<<<<< HEAD
+=======
+        # ── СВО ──────────────────────────────────────────────
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
         if cat == "svo":
             if mid:
                 return self._get_svo_context(mid, sub)
@@ -76,9 +92,17 @@ class AnswerGenerator:
                     parts.append(f"Мера {m}: {title}")
                 return "\n".join(parts), f"svo_all"
 
+<<<<<<< HEAD
         if cat == "large_family":
             return self._get_large_context(sub)
 
+=======
+        # ── Многодетные ──────────────────────────────────────
+        if cat == "large_family":
+            return self._get_large_context(sub)
+
+        # ── Законы ───────────────────────────────────────────
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
         if cat == "laws":
             parts = []
             for i in range(1, 7):
@@ -87,6 +111,10 @@ class AnswerGenerator:
                     parts.append(f"Часть {i}:\n{part}")
             return "\n\n".join(parts), "laws_all"
 
+<<<<<<< HEAD
+=======
+        # ── Общие вопросы ─────────────────────────────────────
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
         if cat == "common":
             text = self.db.get_common_text()
             return text, "common"

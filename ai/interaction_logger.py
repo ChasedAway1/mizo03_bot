@@ -1,9 +1,28 @@
+<<<<<<< HEAD
+=======
+"""
+interaction_logger.py — Логирование взаимодействий пользователь ↔ бот.
+
+Сохраняет в таблицу interaction_logs:
+  - вопрос пользователя
+  - определённое намерение (категория, подтема, мера)
+  - сгенерированный ответ
+  - источник данных
+  - время ответа LLM
+  - оценку пользователя (если поставил)
+"""
+
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 import time
 import logging
 from typing import Optional
 
 logger = logging.getLogger(__name__)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 class InteractionLogger:
     def __init__(self, db):
         self.db = db

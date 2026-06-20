@@ -1,12 +1,20 @@
 # Чат-бот МИЗО РБ с LLM-интеграцией
+<<<<<<< HEAD
 
 ## Архитектура
 
+=======
+## Архитектура
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 ```
 Пользователь (VK)
       │  текстовый вопрос
       ▼
+<<<<<<< HEAD
 IntentClassifier ──► LLM (GigaChat / YandexGPT / OpenRouter / Ollama)
+=======
+IntentClassifier ──► LLM
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
       │  category + subtopic + measure_id
       ▼
 AnswerGenerator
@@ -21,6 +29,7 @@ AnswerGenerator
                 ▼
       Пользователь получает ответ + кнопки + запрос оценки
 ```
+<<<<<<< HEAD
 
 ## Быстрый старт
 
@@ -38,6 +47,9 @@ python bot.py
 
 ## Структура проекта
 
+=======
+## Структура проекта
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 ```
 mizo_bot_ai/
 ├── bot.py                  ← точка входа
@@ -60,6 +72,7 @@ mizo_bot_ai/
 │   └── db.py
 └── keyboards.py
 ```
+<<<<<<< HEAD
 
 ## Таблица логов (создаётся автоматически)
 
@@ -75,3 +88,5 @@ interaction_logs (
     created_at
 )
 ```
+=======
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26

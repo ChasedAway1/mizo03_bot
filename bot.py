@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+=======
+"""
+bot.py — Точка входа чат-бота МИЗО РБ с LLM-интеграцией.
+
+Архитектура:
+  VK Bot (vkbottle)
+    ├── Статические handlers  ← быстрые ответы по кнопкам (сохранены)
+    └── AI handler            ← свободный текст → LLM → ответ
+          ├── IntentClassifier  (определяет тему запроса)
+          ├── AnswerGenerator   (RAG: данные из БД + генерация LLM)
+          ├── ContextManager    (история диалога)
+          └── InteractionLogger (логирование + оценки)
+
+LLM-провайдер задаётся через переменную среды LLM_BACKEND:
+  gigachat | yandexgpt | openrouter | ollama
+"""
+
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 import os
 import logging
 import asyncio
@@ -21,7 +40,12 @@ from handlers import (
     register_ai_handler,
 )
 
+<<<<<<< HEAD
 # Конфигурация
+=======
+# ── Конфигурация ──────────────────────────────────────────────────────────────
+
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 load_dotenv()
 
 logging.basicConfig(
@@ -35,7 +59,11 @@ VK_TOKEN = os.getenv(
     "vk1.a.yIy9ZjXc_H4zSlFvqP3n-JnHA6PwW7tC5Se4w3AqrdCcCfjy3YY0U-fOfTwSJAArSABLlL_EFN3ogozdtriHlqytWC3DfL6FORw8si0PcfSs5XMj9BCXXoMSUl_jUVmBxBXRbzfJkG5WalHPDchWvOVGizFL36bRYzauz7bzwqDlR7VDBj-J0LNuzBBpvhb8Ev07cDmN_NL2AiI2MtN3dg"
 )
 
+<<<<<<< HEAD
 # Инициализация
+=======
+# ── Инициализация ─────────────────────────────────────────────────────────────
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 
 bot = Bot(token=VK_TOKEN)
 
@@ -57,7 +85,14 @@ ctx_mgr    = ContextManager()
 ilogger    = InteractionLogger(db)
 generator  = AnswerGenerator(llm, db)
 
+<<<<<<< HEAD
 # Регистрация обработчиков событий
+=======
+# ── Регистрация handlers ──────────────────────────────────────────────────────
+# ВАЖНО: статические handlers регистрируются ПЕРВЫМИ
+# AI-handler (catch-all) — ПОСЛЕДНИМ
+
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 register_main_handlers(bot, db, ilogger)
 register_svo_handlers(bot, db)
 register_large_handlers(bot, db)
@@ -70,7 +105,11 @@ register_ai_handler(bot, db, classifier, generator, ctx_mgr, ilogger)
 logger.info(f"LLM-провайдер: {os.getenv('LLM_BACKEND', 'openrouter')}")
 
 
+<<<<<<< HEAD
 # Фоновая задача: очистка контекстов
+=======
+# ── Фоновая задача: очистка контекстов ───────────────────────────────────────
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 
 async def cleanup_task():
     while True:
@@ -80,7 +119,11 @@ async def cleanup_task():
             logger.info(f"Очищено {removed} устаревших контекстов")
 
 
+<<<<<<< HEAD
 # Запуск 
+=======
+# ── Запуск ────────────────────────────────────────────────────────────────────
+>>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 
 if __name__ == "__main__":
     logger.info("Бот запускается...")
