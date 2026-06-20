@@ -42,10 +42,10 @@ bot = Bot(token=VK_TOKEN)
 
 # База данных
 db = Database(
-    host=os.getenv("DB_HOST", "db.gfczyycvyyqmdcqyfmxq.supabase.co"),
+    host=os.getenv("DB_HOST", "aws-1-eu-central-1.pooler.supabase.com"),
     port=int(os.getenv("DB_PORT", "5432")),
     database=os.getenv("DB_NAME", "postgres"),
-    user=os.getenv("DB_USER", "postgres"),
+    user=os.getenv("DB_USER", "postgres.gfczyycvyyqmdcqyfmxq"),
     password=os.getenv("DB_PASSWORD", "Chased_Away1"),
 )
 db.connect()
