@@ -13,13 +13,13 @@ class Message:
 
 class UserContext: #Контекст одного пользователя
     MAX_HISTORY = 10          # максимум сообщений в памяти
-    SESSION_TTL = 30 * 60     # 30 минут — сессия сбрасывается
+    SESSION_TTL = 30 * 60     # 30 минут и сессия сбрасывается
 
     def __init__(self, user_id: int):
         self.user_id: int = user_id
         self.history: Deque[Message] = deque(maxlen=self.MAX_HISTORY)
-        self.last_category: str | None = None   # последняя категория (svo/large...)
-        self.last_measure: int | None = None    # последняя мера СВО
+        self.last_category: str | None = None
+        self.last_measure: int | None = None    
         self._last_active: float = time.time()
 
     def add_message(self, role: str, text: str) -> None:
