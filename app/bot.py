@@ -43,7 +43,7 @@ bot = Bot(token=VK_TOKEN)
 # База данных
 db = Database(
     host=os.getenv("DB_HOST", "localhost"),
-    port=int(os.getenv("DB_PORT", "5434")),
+    port=int(os.getenv("DB_PORT", "5432")),
     database=os.getenv("DB_NAME", "mizo_bot"),
     user=os.getenv("DB_USER", "postgres"),
     password=os.getenv("DB_PASSWORD", "Chased_Away1"),
