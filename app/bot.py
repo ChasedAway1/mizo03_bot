@@ -46,7 +46,7 @@ db = Database(
     port=int(os.getenv("DB_PORT", "5434")),
     database=os.getenv("DB_NAME", "mizo_bot"),
     user=os.getenv("DB_USER", "postgres"),
-    password=os.getenv("DB_PASSWORD", "221616"),
+    password=os.getenv("DB_PASSWORD", "Chased_Away1"),
 )
 db.connect()
 logger.info("Подключение к PostgreSQL установлено")

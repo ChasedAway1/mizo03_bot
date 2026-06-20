@@ -2,7 +2,7 @@ import psycopg2
 import psycopg2.extras
 
 class Database:
-    def __init__(self, host="localhost", port=5434, database="mizo_bot", user="postgres", password="221616"):
+    def __init__(self, host="localhost", port=5434, database="mizo_bot", user="postgres", password="Chased_Away1"):
         self.host = host
         self.port = port
         self.database = database
