@@ -1,21 +1,8 @@
-<<<<<<< HEAD
-=======
-"""
-answer_generator.py — RAG (Retrieval-Augmented Generation) для МИЗО РБ.
-
-Алгоритм:
-1. По классифицированному намерению извлечь релевантные данные из БД
-2. Передать их LLM как контекст
-3. LLM генерирует связный, точный ответ со ссылками на закон
-"""
-
->>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 import logging
 from typing import Optional
 from .intent_classifier import Intent
 
 logger = logging.getLogger(__name__)
-
 
 ANSWER_SYSTEM_PROMPT = """Ты — вежливый и компетентный помощник Министерства имущественных
 и земельных отношений Республики Бурятия (МИЗО РБ).
@@ -32,17 +19,13 @@ ANSWER_SYSTEM_PROMPT = """Ты — вежливый и компетентный 
 6. Если данных недостаточно — честно сообщи об этом и укажи, куда обратиться.
 7. Ответ на русском языке. Максимум 4000 символов."""
 
-
 class AnswerGenerator:
     def __init__(self, llm_provider, db):
         self.llm = llm_provider
         self.db  = db
 
     async def generate(self, intent: Intent) -> tuple[str, str]:
-        """
-        Возвращает (ответ_LLM, источник_данных).
-        источник_данных — строка для логирования/отладки.
-        """
+        # Возвращает (ответ_LLM, источник_данных). источник_данных - строка для логирования/отладки.
         context, source = self._retrieve_context(intent)
 
         if not context:
@@ -72,15 +55,11 @@ class AnswerGenerator:
             )
 
     def _retrieve_context(self, intent: Intent) -> tuple[str, str]:
-        """Извлечь релевантные данные из БД по намерению."""
+        # Извлечь релевантные данные из БД по намерению.
         cat = intent.category
         sub = intent.subtopic
         mid = intent.measure_id
 
-<<<<<<< HEAD
-=======
-        # ── СВО ──────────────────────────────────────────────
->>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
         if cat == "svo":
             if mid:
                 return self._get_svo_context(mid, sub)
@@ -92,17 +71,9 @@ class AnswerGenerator:
                     parts.append(f"Мера {m}: {title}")
                 return "\n".join(parts), f"svo_all"
 
-<<<<<<< HEAD
         if cat == "large_family":
             return self._get_large_context(sub)
 
-=======
-        # ── Многодетные ──────────────────────────────────────
-        if cat == "large_family":
-            return self._get_large_context(sub)
-
-        # ── Законы ───────────────────────────────────────────
->>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
         if cat == "laws":
             parts = []
             for i in range(1, 7):
@@ -111,10 +82,6 @@ class AnswerGenerator:
                     parts.append(f"Часть {i}:\n{part}")
             return "\n\n".join(parts), "laws_all"
 
-<<<<<<< HEAD
-=======
-        # ── Общие вопросы ─────────────────────────────────────
->>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
         if cat == "common":
             text = self.db.get_common_text()
             return text, "common"
@@ -122,7 +89,7 @@ class AnswerGenerator:
         return "", "unknown"
 
     def _get_svo_context(self, measure_id: int, subtopic: str) -> tuple[str, str]:
-        """Получить контекст для конкретной меры СВО."""
+        # Получить контекст для конкретной меры СВО.
         title      = self.db.get_svo_title(measure_id)
         docs       = self.db.get_svo_docs(measure_id)
         right_text = self.db.get_svo_right(measure_id)
@@ -162,7 +129,7 @@ class AnswerGenerator:
         return ctx, f"svo_measure_{measure_id}_{subtopic}"
 
     def _get_large_context(self, subtopic: str) -> tuple[str, str]:
-        """Получить контекст для многодетных семей."""
+        # Получить контекст для многодетных семей.
         law        = self.db.get_large_law()
         conditions = self.db.get_large_conditions()
         order      = self.db.get_large_order()

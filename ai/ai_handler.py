@@ -17,10 +17,8 @@ from ai import (
 
 logger = logging.getLogger(__name__)
 
-# Сообщение пока LLM думает
-THINKING_MSG = "Анализирую ваш запрос..."
+THINKING_MSG = "⏳ Анализирую ваш запрос..."
 
-# Клавиатура с оценкой (показывается после ответа)
 RATING_INTRO = "\n\n─────────────────\nОцените ответ:"
 
 
@@ -45,7 +43,7 @@ def _rating_keyboard(log_id: int):
 
 
 def _suggest_keyboard(category: str):
-    # Предложить тематические кнопки после AI-ответа.
+    """Предложить тематические кнопки после AI-ответа."""
     if category == "svo":
         return get_svo_keyboard()
     if category == "large_family":
@@ -74,6 +72,10 @@ def register_ai_handler(bot, db, classifier: IntentClassifier,
 
     @bot.on.message()
     async def handle_free_text(message: VKMessage):
+        """
+        Обрабатывает любое текстовое сообщение, не перехваченное другими handlers.
+        Этот handler должен регистрироваться ПОСЛЕДНИМ.
+        """
         user_id   = message.from_id
         user_text = (message.text or "").strip()
 
@@ -120,7 +122,8 @@ def register_ai_handler(bot, db, classifier: IntentClassifier,
 
         ctx.add_message("bot", answer)
 
-        # Ответ пользователю (ограничение сообщения в ВКонтакте 4096 символов)
+        # Ответ пользователю
+        # VK ограничивает сообщение 4096 символами
         if len(answer) > 4000:
             chunks = [answer[i:i+4000] for i in range(0, len(answer), 4000)]
             for chunk in chunks[:-1]:
@@ -128,14 +131,14 @@ def register_ai_handler(bot, db, classifier: IntentClassifier,
             answer = chunks[-1]
 
         # Формируем финальное сообщение с мета-информацией
-        footer = f"\n\nОтвет сгенерирован ИИ (уверенность: {int(intent.confidence * 100)}%)"
+        footer = f"\n\n🤖 Ответ сгенерирован ИИ (уверенность: {int(intent.confidence * 100)}%)"
 
         await message.answer(
             answer + footer,
             keyboard=_suggest_keyboard(intent.category),
         )
 
-        # Предлагаем оценить
+        # Предлагаем оценить если есть log_id
         if log_id:
             await message.answer(
                 RATING_INTRO,

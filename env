@@ -14,3 +14,5 @@ LLM_BACKEND=llm7
 # Модель (можно не менять — deepseek-v3 хорошо знает русский):
 # LLM7_MODEL=deepseek-v3-0324        <- по умолчанию, умная
 # LLM7_MODEL=deepseek-r1-0528        <- с рассуждениями, медленнее
+# LLM7_MODEL=gpt-4o-mini-2024-07-18  <- хорошо знает русский
+# LLM7_MODEL=mistral-small-3.1-24b   <- лёгкая и быстрая

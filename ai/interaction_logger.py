@@ -1,35 +1,15 @@
-<<<<<<< HEAD
-=======
-"""
-interaction_logger.py — Логирование взаимодействий пользователь ↔ бот.
-
-Сохраняет в таблицу interaction_logs:
-  - вопрос пользователя
-  - определённое намерение (категория, подтема, мера)
-  - сгенерированный ответ
-  - источник данных
-  - время ответа LLM
-  - оценку пользователя (если поставил)
-"""
-
->>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 import time
 import logging
 from typing import Optional
 
 logger = logging.getLogger(__name__)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 class InteractionLogger:
     def __init__(self, db):
         self.db = db
         self._ensure_table()
 
     def _ensure_table(self):
-        """Создать таблицу логов если не существует."""
         try:
             cursor = self.db.get_cursor()
             cursor.execute("""
@@ -61,7 +41,6 @@ class InteractionLogger:
         data_source: str,
         llm_ms: int,
     ) -> Optional[int]:
-        """Записать взаимодействие. Возвращает id записи."""
         try:
             cursor = self.db.get_cursor()
             cursor.execute("""
@@ -88,8 +67,7 @@ class InteractionLogger:
             logger.error(f"Ошибка логирования: {e}")
             return None
 
-    def save_rating(self, log_id: int, rating: int) -> bool:
-        """Сохранить оценку пользователя (1–5)."""
+    def save_rating(self, log_id: int, rating: int) -> bool: # Сохранить оценку пользователя (1–5).
         try:
             cursor = self.db.get_cursor()
             cursor.execute(
@@ -102,8 +80,7 @@ class InteractionLogger:
             logger.error(f"Ошибка сохранения оценки: {e}")
             return False
 
-    def get_stats(self) -> dict:
-        """Статистика для администратора."""
+    def get_stats(self) -> dict: # Статистика для администратора.
         try:
             cursor = self.db.get_cursor()
             cursor.execute("""

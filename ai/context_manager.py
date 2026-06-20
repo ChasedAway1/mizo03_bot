@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-=======
-"""
-context_manager.py — Управление диалоговым контекстом.
-
-Хранит историю последних N сообщений каждого пользователя в памяти
-(без персистентности — достаточно для демонстрации на защите).
-"""
-
->>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
 import time
 from collections import deque
 from dataclasses import dataclass, field
@@ -16,31 +6,20 @@ from typing import Deque
 
 @dataclass
 class Message:
-<<<<<<< HEAD
-    role: str      
-=======
     role: str       # "user" | "bot"
->>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
     text: str
     timestamp: float = field(default_factory=time.time)
 
 
-class UserContext:
-    """Контекст одного пользователя."""
-
+class UserContext: #Контекст одного пользователя
     MAX_HISTORY = 10          # максимум сообщений в памяти
     SESSION_TTL = 30 * 60     # 30 минут — сессия сбрасывается
 
     def __init__(self, user_id: int):
         self.user_id: int = user_id
         self.history: Deque[Message] = deque(maxlen=self.MAX_HISTORY)
-<<<<<<< HEAD
-        self.last_category: str | None = None   
-        self.last_measure: int | None = None    
-=======
         self.last_category: str | None = None   # последняя категория (svo/large...)
         self.last_measure: int | None = None    # последняя мера СВО
->>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
         self._last_active: float = time.time()
 
     def add_message(self, role: str, text: str) -> None:
@@ -85,11 +64,7 @@ class ContextManager:
         return ctx
 
     def cleanup_expired(self) -> int:
-<<<<<<< HEAD
-        """Удалить старые контексты. Возвращает количество удалённых."""
-=======
         """Удалить протухшие контексты. Возвращает количество удалённых."""
->>>>>>> 4b55dc7883198cb626e17712fddf1c30aa32cf26
         expired = [uid for uid, ctx in self._contexts.items() if ctx.is_expired()]
         for uid in expired:
             del self._contexts[uid]
