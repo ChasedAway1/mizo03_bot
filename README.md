@@ -75,15 +75,3 @@ interaction_logs (
     created_at
 )
 ```
-host:
-db.gfczyycvyyqmdcqyfmxq.supabase.co
-
-port:
-5432
-
-database:
-postgres
-
-user:
-postgres
-
