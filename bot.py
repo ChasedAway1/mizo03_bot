@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 
 VK_TOKEN = os.getenv(
     "VK_TOKEN",
-    "vk1.a.HJiwSH1lWox731V4qBbzSPfR2UH-ASkFQ2FSCN7ujHuDYeW5Og9keQJ9TcRcuN7Zp4HRIyDrY5tPsM1WtkS5IPnaZlSLAkcwPwBbUAkTD5GXnFJIQCR_hR8lmWNKxpuvyfXreUaj-HZEDQrbYall7Eph8iATcgzCrq_18mDEwsVDEUfpWdQbdvLUO059ZLkSDsoMQqL_Wtkokratsy8SDA"
+    "vk1.a.RqANJS6I8X6XGyNBhGafndK-PkDC1gKP0KQJGARLa3H1_AX8dX4_Yzn2bMorUr_dhEHJooNWcc529Ewr40u7EImUgtBMV5x4_uULu0Aky_w2_9CCqVoUhxgLbfnvX_EWUVa5NSPC49-y_Ia90sC7J9R6Blg1XG-kdApPD3GHhEnQzldxOFVzIboL2sWJf2amwzBZY1QKUcpyVjxiQhBU4Q"
 )
 
 # Инициализация
